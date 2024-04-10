@@ -129,18 +129,18 @@ def register():
 def get_video(video_name):
     video_path = f'static/{video_name}'
     file_size = os.path.getsize(video_path)
-    status_code = 200
     headers = {}
 
     if 'Range' in request.headers:
-        status_code = 200
         range_header = request.headers.get('Range')
-        start, end = range_header.replace('bytes=', '').split('-')
-        start = int(start)
-        end = int(end) if end else file_size - 1
-        chunk_size = end - start + 1
+        start = 0
+        end = file_size - 1
+        chunk_size = file_size
+        status_code = 200
         headers['Content-Range'] = f"bytes {start}-{end}/{file_size}"
         headers['Content-Length'] = chunk_size
+    else:
+        chunk_size = file_size
 
     headers['Accept-Ranges'] = 'bytes'
 
