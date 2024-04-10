@@ -1,0 +1,7 @@
+flask
+os
+random
+socket
+sqlite3
+json
+shutil
