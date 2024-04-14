@@ -10,7 +10,6 @@ import socket
 import shutil
 
 app = Flask(__name__)
-app.config.from_object('config')
 
 
 @app.route('/main')
